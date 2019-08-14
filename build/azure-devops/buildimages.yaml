@@ -35,7 +35,7 @@ jobs:
     inputs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
+      azureSubscriptionEndpoint: containerconnection
       azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
@@ -48,7 +48,7 @@ jobs:
     inputs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
+      azureSubscriptionEndpoint: containerconnection
       azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
@@ -74,7 +74,7 @@ jobs:
     inputs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
+      azureSubscriptionEndpoint: containerconnection
       azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
@@ -89,7 +89,7 @@ jobs:
     inputs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
+      azureSubscriptionEndpoint: containerconnection
       azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
