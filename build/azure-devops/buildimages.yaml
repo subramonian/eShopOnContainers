@@ -4,10 +4,6 @@ parameters:
   helmfrom: ''
   helmto: ''
 
-variables:
-    azureContainerRegistry: eshopcontainerregistry
-    azureSubscriptionEndpoint: subbuinthecloud
-    
 jobs:
 - job: BuildContainersForPR_Linux
   condition: eq('${{ variables['Build.Reason'] }}', 'PullRequest')
