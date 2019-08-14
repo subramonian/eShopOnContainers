@@ -35,8 +35,8 @@ jobs:
     inputs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      azureContainerRegistry: $(azureContainerRegistry)
+      azureSubscriptionEndpoint: subbuinthecloud
+      azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -48,8 +48,8 @@ jobs:
     inputs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      azureContainerRegistry: $(azureContainerRegistry)
+      azureSubscriptionEndpoint: subbuinthecloud
+      azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -74,8 +74,8 @@ jobs:
     inputs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      azureContainerRegistry: $(azureContainerRegistry)
+      azureSubscriptionEndpoint: subbuinthecloud
+      azureContainerRegistry: eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -89,8 +89,8 @@ jobs:
     inputs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      azureContainerRegistry: $(azureContainerRegistry)
+      azureSubscriptionEndpoint: subbuinthecloud
+      azureContainerRegistry:eshopcontainerregistry
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
