@@ -14,7 +14,7 @@
       }
     },
     "admin": {
-      "value": "sa"
+      "value": "sqladmin"
     },
     "adminpwd": {
       "value": "Password@123#"
