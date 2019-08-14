@@ -14,10 +14,10 @@
       }
     },
     "admin": {
-      "value": null
+      "value": "sa"
     },
     "adminpwd": {
-      "value": null
+      "value": "Password@123#"
     }
   }
 }
