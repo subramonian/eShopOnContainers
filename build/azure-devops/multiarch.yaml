@@ -1,7 +1,7 @@
 parameters:
   image: ''
   branch: ''
-  registry: 'eshopcontainerregistry.azurecr.io'
+  registry: 'eshop'
   registryEndpoint: ''
 
 jobs:
