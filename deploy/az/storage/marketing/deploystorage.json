@@ -40,7 +40,7 @@
         "displayName": "[variables('profileName')]"
       },
       "sku": {
-        "name": "Standard_Verizon"
+        "name": "Standard_Microsoft"
       },
       "resources": [
         {
