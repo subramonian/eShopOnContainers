@@ -36,7 +36,7 @@ jobs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
       azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry
+      azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -49,7 +49,7 @@ jobs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
       azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry
+      azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -75,7 +75,7 @@ jobs:
       dockerComposeCommand: 'build ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
       azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry
+      azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
@@ -90,7 +90,7 @@ jobs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
       azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry
+      azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
       dockerComposeFile: docker-compose.yml
       qualifyImageNames: true
