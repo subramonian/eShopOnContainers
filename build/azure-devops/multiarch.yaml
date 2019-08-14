@@ -18,7 +18,7 @@ jobs:
     inputs:
       command: login
       containerregistrytype: 'Azure Container Registry'
-      azureContainerRegistry: ${{ parameters.registryEndpoint }}
+      containerRegistry: ${{ parameters.registryEndpoint }}
   - bash: |
       mkdir -p ~/.docker
       sed '$ s/.$//' $DOCKER_CONFIG/config.json > ~/.docker/config.json
