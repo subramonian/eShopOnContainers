@@ -1,9 +1,9 @@
 replicaCount: 1
-clusterName: eshop-aks
+clusterName: eshopcluster
 pathBase: /basket-api
 
 image:
-  repository: eshop/basket.api
+  repository: eshop/basket-api
   tag: latest
   pullPolicy: IfNotPresent
 
