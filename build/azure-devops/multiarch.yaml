@@ -9,7 +9,7 @@ jobs:
   condition: and(succeeded(),ne('${{ variables['Build.Reason'] }}', 'PullRequest'))
   dependsOn:
     - BuildWindows
-    - BuildLinux  
+#    - BuildLinux  
   pool: 
     vmImage: 'windows-2019'
   steps:
