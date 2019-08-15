@@ -24,13 +24,13 @@
             "properties": {
                 "redisVersion": "3.2.7",
                 "sku": {
-                    "name": "Standard",
+                    "name": "Basic",
                     "family": "C",
-                    "capacity": 1
+                    "capacity": 0
                 },
                 "enableNonSslPort": true,
                 "redisConfiguration": {
-                    "maxclients": "1000",
+                    "maxclients": "256",
                     "maxmemory-reserved": "50",
                     "maxfragmentationmemory-reserved": "50",
                     "maxmemory-policy": "volatile-lru",
