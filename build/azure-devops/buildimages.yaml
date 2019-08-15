@@ -5,65 +5,65 @@ parameters:
   helmto: ''
 
 jobs:
-- job: BuildContainersForPR_Linux
-  condition: eq('${{ variables['Build.Reason'] }}', 'PullRequest')
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - bash: docker-compose build ${{ parameters.services }}
-    displayName: Create multiarch manifest
-    env:
-      TAG: ${{ variables['Build.SourceBranchName'] }}    
-- job: BuildContainersForPR_Windows
-  condition: eq('${{ variables['Build.Reason'] }}', 'PullRequest')
-  pool:
-    vmImage: 'windows-2019'
-  steps:
-  - bash: docker-compose build ${{ parameters.services }}
-    displayName: Create multiarch manifest
-    env:
-      TAG: ${{ variables['Build.SourceBranchName'] }} 
-      PLATFORM: win
-      NODE_IMAGE: stefanscherer/node-windows:10
-- job: BuildLinux
-  condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
-  pool:
-    vmImage: 'ubuntu-16.04'
-  steps:
-  - task: DockerCompose@0
-    displayName: Compose build ${{ parameters.services }}
-    inputs:
-      dockerComposeCommand: 'build ${{ parameters.services }}'
-      containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry.azurecr.io
-      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-      dockerComposeFile: docker-compose.yml
-      qualifyImageNames: true
-      projectName: ""
-      dockerComposeFileArgs: |
-        TAG=${{ variables['Build.SourceBranchName'] }}
-  - task: DockerCompose@0
-    displayName: Compose push ${{ parameters.images }}
-    inputs:
-      dockerComposeCommand: 'push ${{ parameters.services }}'
-      containerregistrytype: Azure Container Registry
-      azureSubscriptionEndpoint: subbuinthecloud
-      azureContainerRegistry: eshopcontainerregistry.azurecr.io
-      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-      dockerComposeFile: docker-compose.yml
-      qualifyImageNames: true
-      projectName: ""
-      dockerComposeFileArgs: |
-        TAG=${{ variables['Build.SourceBranchName'] }} 
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: ${{ parameters.helmfrom }}
-      targetFolder: ${{ parameters.helmto }}
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: ${{ parameters.helmto }}
-      artifactName: helm
+#- job: BuildContainersForPR_Linux
+#  condition: eq('${{ variables['Build.Reason'] }}', 'PullRequest')
+#  pool:
+#    vmImage: 'ubuntu-16.04'
+#  steps:
+#  - bash: docker-compose build ${{ parameters.services }}
+#    displayName: Create multiarch manifest
+#    env:
+#      TAG: ${{ variables['Build.SourceBranchName'] }}    
+#- job: BuildContainersForPR_Windows
+#  condition: eq('${{ variables['Build.Reason'] }}', 'PullRequest')
+#  pool:
+#    vmImage: 'windows-2019'
+#  steps:
+#  - bash: docker-compose build ${{ parameters.services }}
+#    displayName: Create multiarch manifest
+#    env:
+#      TAG: ${{ variables['Build.SourceBranchName'] }} 
+#      PLATFORM: win
+#      NODE_IMAGE: stefanscherer/node-windows:10
+#- job: BuildLinux
+#  condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
+#  pool:
+#    vmImage: 'ubuntu-16.04'
+#  steps:
+#  - task: DockerCompose@0
+#    displayName: Compose build ${{ parameters.services }}
+#    inputs:
+#      dockerComposeCommand: 'build ${{ parameters.services }}'
+#      containerregistrytype: Azure Container Registry
+#      azureSubscriptionEndpoint: subbuinthecloud
+#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
+#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
+#      dockerComposeFile: docker-compose.yml
+#      qualifyImageNames: true
+#      projectName: ""
+#      dockerComposeFileArgs: |
+#        TAG=${{ variables['Build.SourceBranchName'] }}
+#  - task: DockerCompose@0
+#    displayName: Compose push ${{ parameters.images }}
+#    inputs:
+#      dockerComposeCommand: 'push ${{ parameters.services }}'
+#      containerregistrytype: Azure Container Registry
+#      azureSubscriptionEndpoint: subbuinthecloud
+#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
+#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
+#      dockerComposeFile: docker-compose.yml
+#      qualifyImageNames: true
+#      projectName: ""
+#      dockerComposeFileArgs: |
+#        TAG=${{ variables['Build.SourceBranchName'] }} 
+#  - task: CopyFiles@2
+#    inputs:
+#      sourceFolder: ${{ parameters.helmfrom }}
+#      targetFolder: ${{ parameters.helmto }}
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      pathtoPublish: ${{ parameters.helmto }}
+#      artifactName: helm
 - job: BuildWindows
   condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
   pool:
@@ -97,4 +97,12 @@ jobs:
       projectName: ""
       dockerComposeFileArgs: |
         TAG=${{ variables['Build.SourceBranchName'] }}
-        PLATFORM=win      
+        PLATFORM=win  
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: ${{ parameters.helmfrom }}
+      targetFolder: ${{ parameters.helmto }}
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: ${{ parameters.helmto }}
+      artifactName: helm
