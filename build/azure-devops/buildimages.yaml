@@ -25,49 +25,10 @@ jobs:
 #      TAG: ${{ variables['Build.SourceBranchName'] }} 
 #      PLATFORM: win
 #      NODE_IMAGE: stefanscherer/node-windows:10
-#- job: BuildLinux
-#  condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
-#  pool:
-#    vmImage: 'ubuntu-16.04'
-#  steps:
-#  - task: DockerCompose@0
-#    displayName: Compose build ${{ parameters.services }}
-#    inputs:
-#      dockerComposeCommand: 'build ${{ parameters.services }}'
-#      containerregistrytype: Azure Container Registry
-#      azureSubscriptionEndpoint: AKSConnection
-#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
-#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-#      dockerComposeFile: docker-compose.yml
-#      qualifyImageNames: true
-#      projectName: ""
-#      dockerComposeFileArgs: |
-#        TAG=${{ variables['Build.SourceBranchName'] }}
-#  - task: DockerCompose@0
-#    displayName: Compose push ${{ parameters.images }}
-#    inputs:
-#      dockerComposeCommand: 'push ${{ parameters.services }}'
-#      containerregistrytype: Azure Container Registry
-#      azureSubscriptionEndpoint: AKSConnection
-#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
-#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-#      dockerComposeFile: docker-compose.yml
-#      qualifyImageNames: true
-#      projectName: ""
-#      dockerComposeFileArgs: |
-#        TAG=${{ variables['Build.SourceBranchName'] }} 
-#  - task: CopyFiles@2
-#    inputs:
-#      sourceFolder: ${{ parameters.helmfrom }}
-#      targetFolder: ${{ parameters.helmto }}
-#  - task: PublishBuildArtifacts@1
-#    inputs:
-#      pathtoPublish: ${{ parameters.helmto }}
-#      artifactName: helm
-- job: BuildWindows
+- job: BuildLinux
   condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'ubuntu-16.04'
   steps:
   - task: DockerCompose@0
     displayName: Compose build ${{ parameters.services }}
@@ -82,10 +43,8 @@ jobs:
       projectName: ""
       dockerComposeFileArgs: |
         TAG=${{ variables['Build.SourceBranchName'] }}
-        PLATFORM=win
-        NODE_IMAGE=stefanscherer/node-windows:10
   - task: DockerCompose@0
-    displayName: Compose push ${{ parameters.services }}
+    displayName: Compose push ${{ parameters.images }}
     inputs:
       dockerComposeCommand: 'push ${{ parameters.services }}'
       containerregistrytype: Azure Container Registry
@@ -96,8 +55,7 @@ jobs:
       qualifyImageNames: true
       projectName: ""
       dockerComposeFileArgs: |
-        TAG=${{ variables['Build.SourceBranchName'] }}
-        PLATFORM=win  
+        TAG=${{ variables['Build.SourceBranchName'] }} 
   - task: CopyFiles@2
     inputs:
       sourceFolder: ${{ parameters.helmfrom }}
@@ -106,3 +64,45 @@ jobs:
     inputs:
       pathtoPublish: ${{ parameters.helmto }}
       artifactName: helm
+#- job: BuildWindows
+#  condition: ne('${{ variables['Build.Reason'] }}', 'PullRequest')
+#  pool:
+#    vmImage: 'windows-2019'
+#  steps:
+#  - task: DockerCompose@0
+#    displayName: Compose build ${{ parameters.services }}
+#    inputs:
+#      dockerComposeCommand: 'build ${{ parameters.services }}'
+#      containerregistrytype: Azure Container Registry
+#      azureSubscriptionEndpoint: AKSConnection
+#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
+#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
+#      dockerComposeFile: docker-compose.yml
+#      qualifyImageNames: true
+#      projectName: ""
+#      dockerComposeFileArgs: |
+#        TAG=${{ variables['Build.SourceBranchName'] }}
+#        PLATFORM=win
+#        NODE_IMAGE=stefanscherer/node-windows:10
+#  - task: DockerCompose@0
+#    displayName: Compose push ${{ parameters.services }}
+#    inputs:
+#      dockerComposeCommand: 'push ${{ parameters.services }}'
+#      containerregistrytype: Azure Container Registry
+#      azureSubscriptionEndpoint: AKSConnection
+#      azureContainerRegistry: eshopcontainerregistry.azurecr.io
+#      #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
+#      dockerComposeFile: docker-compose.yml
+#      qualifyImageNames: true
+#      projectName: ""
+#      dockerComposeFileArgs: |
+#        TAG=${{ variables['Build.SourceBranchName'] }}
+#        PLATFORM=win  
+#  - task: CopyFiles@2
+#    inputs:
+#      sourceFolder: ${{ parameters.helmfrom }}
+#      targetFolder: ${{ parameters.helmto }}
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      pathtoPublish: ${{ parameters.helmto }}
+#      artifactName: helm
