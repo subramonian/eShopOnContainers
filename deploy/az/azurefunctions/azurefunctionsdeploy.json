@@ -15,7 +15,7 @@
 		"WebConfigName": "[concat(variables('SitesEshopfunctionsName'), '/web')]",
 		"Location": "[resourceGroup().location]",
 		"ServerFarmPlan": "[concat(trim(variables('location')), 'Plan')]",
-		"StorageAccounts": "eshopsubbusstorageaccount"
+		"StorageAccounts": "eshopsubbusstaccnt"
     },
     "resources": [        
         {
