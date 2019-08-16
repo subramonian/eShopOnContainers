@@ -38,7 +38,8 @@ jobs:
       azureSubscriptionEndpoint: AKSConnection
       azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-      dockerComposeFile: docker-compose.yml
+      dockerComposeFile: docker-compose.yml  
+      additionalDockerComposeFiles: docker-compose.prod.yml
       qualifyImageNames: true
       projectName: ""
       dockerComposeFileArgs: |
@@ -51,7 +52,8 @@ jobs:
       azureSubscriptionEndpoint: AKSConnection
       azureContainerRegistry: eshopcontainerregistry.azurecr.io
       #dockerRegistryEndpoint: ${{ parameters.registryEndpoint }}
-      dockerComposeFile: docker-compose.prod.yml 
+      dockerComposeFile: docker-compose.yml  
+      additionalDockerComposeFiles: docker-compose.prod.yml
       qualifyImageNames: true
       projectName: ""
       dockerComposeFileArgs: |
